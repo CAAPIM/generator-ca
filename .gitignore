@@ -1,0 +1,19 @@
+# Logs
+*.log
+
+# Coverage tools
+coverage/
+flow-coverage/
+__storyshots__/
+
+# Dependency directory
+node_modules/
+
+# Dist directory
+dist/
+
+# Editor artifacts
+.idea/
+
+# Other
+.DS_Store

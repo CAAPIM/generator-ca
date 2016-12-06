@@ -1,0 +1,12 @@
+[ignore]
+.*/node_modules/flow-coverage-report/.*
+.*/node_modules/config-chain/.*
+.*/node_modules/npmconf/.*
+.*/src/*.spec.js
+.*/src/*.stories.js
+
+[include]
+
+[libs]
+
+[options]

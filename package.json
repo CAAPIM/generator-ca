@@ -33,7 +33,11 @@
     "gulp-mocha": "^3.0.1",
     "gulp-plumber": "^1.0.0",
     "gulp-nsp": "^2.1.0",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "^4.3.5",
+    "commitizen": "^2.8.6",
+    "cz-conventional-changelog": "^1.2.0",
+    "husky": "^0.11.9",
+    "validate-commit-msg": "^2.8.2"
   },
   "eslintConfig": {
     "extends": "xo-space",
@@ -43,12 +47,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https:undefined.git"
+    "url": "https://github.com/CAAPIM/generator-ca.git"
   },
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": "conventional-commit-types"
+    },
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "license": "Apache-2.0"
 }

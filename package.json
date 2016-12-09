@@ -23,8 +23,8 @@
   "devDependencies": {
     "yeoman-test": "^1.0.0",
     "yeoman-assert": "^2.0.0",
-    "eslint": "^3.1.1",
-    "eslint-config-xo-space": "^0.15.0",
+    "eslint": "^3.11.1",
+    "eslint-config-ca": "git+ssh://git@github.com:CAAPIM/eslint-config-ca.git",
     "gulp": "^3.9.0",
     "gulp-eslint": "^3.0.1",
     "gulp-exclude-gitignore": "^1.0.0",
@@ -54,7 +54,9 @@
     "test": "gulp",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "git-cz",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "lint": "eslint ./src/ --ext .js",
+    "precommit": "npm run lint"
   },
   "config": {
     "validate-commit-msg": {

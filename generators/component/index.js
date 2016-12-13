@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2016 CA. All rights reserved.
+ * This software may be modified and distributed under the terms
+ * of the MIT license. See the LICENSE file for details.
+ */
+
 'use strict';
 
 var yeoman = require('yeoman-generator');
@@ -51,8 +57,10 @@ module.exports = yeoman.Base.extend({
       });
 
     this.fs.copyTpl(
-      this.templatePath('LICENSE'),
-      this.destinationPath('LICENSE'), {
+      this.templatePath('.github/**/*'),
+      this.destinationPath('.github'), {
+        componentName: this.props.componentName,
+        packageName: this.props.packageName,
         currentYear: new Date().getFullYear()
       });
 

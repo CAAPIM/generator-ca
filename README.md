@@ -25,7 +25,6 @@ Then generate your new component:
 yo ca:component
 ```
 
-
 ## Contributing
 
 This project supports `commitizen`. You can use `npm run commit` to run the local instance of `commitizen` or `git cz` if you have it installed globally.

@@ -2,18 +2,10 @@
 *.log
 
 # Coverage tools
-coverage/
-flow-coverage/
-__storyshots__/
+coverage
 
 # Dependency directory
-node_modules/
+node_modules
 
 # Dist directory
-dist/
-
-# Editor artifacts
-.idea/
-
-# Other
-.DS_Store
+dist

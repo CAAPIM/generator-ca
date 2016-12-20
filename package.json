@@ -1,6 +1,5 @@
 {
   "name": "generator-ca",
-  "description": "generator app",
   "license": "MIT",
   "author": "CA Technologies",
   "description": "Yeoman generators for common CA components",
@@ -10,7 +9,7 @@
   "main": "generators/index.js",
   "keywords": [
     "yeoman-generator",
-    "CA Technologies"
+    "ca"
   ],
   "dependencies": {
     "yeoman-generator": "^0.24.1",

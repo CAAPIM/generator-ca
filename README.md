@@ -1,7 +1,12 @@
 # generator-ca
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Build Status](https://travis-ci.org/caapim/generator-ca.svg?branch=master)](https://travis-ci.org/caapim/generator-ca)
+[![dependencies](https://david-dm.org/caapim/generator-ca.svg)](https://david-dm.org/caapim/generator-ca)
+[![devDependency Status](https://david-dm.org/caapim/generator-ca/dev-status.svg)](https://david-dm.org/caapim/generator-ca#info=devDependencies)
 
 This generator can be used to assist with build projects that use React by scaffoling out common features and components.
+
+************************************************************
 
 ## Features
 
@@ -9,6 +14,8 @@ This generator can be used to assist with build projects that use React by scaff
 * Automagically lint your scripts
 * Automagically wire up your Bower components with
 * Unit Testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/airbnb/enzyme)
+
+************************************************************
 
 ## Installation
 
@@ -24,6 +31,7 @@ Then generate your new component:
 ```bash
 yo ca:component
 ```
+************************************************************
 
 ## How Can You Contribute
 Your contributions are welcome and much appreciated. To learn more, see the [Contribution Guidelines](https://github.com/CAAPIM/react-themer/blob/master/CONTRIBUTING.md).

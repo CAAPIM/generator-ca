@@ -2,6 +2,7 @@
   "name": "generator-ca",
   "license": "MIT",
   "author": "CA Technologies",
+  "version": "1.0.0",
   "description": "Yeoman generators for common CA components",
   "files": [
     "generators"

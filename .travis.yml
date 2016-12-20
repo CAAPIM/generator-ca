@@ -1,7 +1,27 @@
+sudo: false
+
 language: node_js
+
+notifications:
+  email: false
+
 node_js:
-  - v6
-  - v5
-  - v4
-  - '0.12'
-  - '0.10'
+- stable
+
+cache:
+  directories:
+  - node_modules
+
+before_script:
+  - npm install
+
+script:
+- npm run lint
+- npm test
+
+after_success:
+- npm run release
+
+branches:
+  only:
+  - master

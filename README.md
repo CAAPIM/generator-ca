@@ -4,18 +4,16 @@
 [![dependencies](https://david-dm.org/caapim/generator-ca.svg)](https://david-dm.org/caapim/generator-ca)
 [![devDependency Status](https://david-dm.org/caapim/generator-ca/dev-status.svg)](https://david-dm.org/caapim/generator-ca#info=devDependencies)
 
-This generator can be used to assist with build projects that use React by scaffoling out common features and components.
+## Overview
 
-************************************************************
+Yeoman generator to saffold common JavaScript modules and components. This library is meant to be used to generate all CA projects and components.
 
 ## Features
 
-* Built-in preview server with [React Storybook](https://github.com/kadirahq/react-storybook)
-* Automagically lint your scripts
-* Automagically wire up your Bower components with
+* Automagically lint your scripts with ESlint
+* Automagically type check your scripts with Flow
 * Unit Testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/airbnb/enzyme)
-
-************************************************************
+* Built-in preview server with [React Storybook](https://github.com/kadirahq/react-storybook) for react components
 
 ## Installation
 
@@ -31,7 +29,6 @@ Then generate your new component:
 ```bash
 yo ca:component
 ```
-************************************************************
 
 ## How Can You Contribute
 Your contributions are welcome and much appreciated. To learn more, see the [Contribution Guidelines](https://github.com/CAAPIM/react-themer/blob/master/CONTRIBUTING.md).
@@ -40,7 +37,6 @@ This project supports `commitizen`. You can use `npm run commit` to run the loca
 
 Alternatively, if you are simply using `git commit`, you must follow this format:
 `git commit -m "<type>: <subject>"`
-************************************************************
 
 ## License
 Copyright (c) 2016 CA. All rights reserved.

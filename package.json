@@ -4,6 +4,10 @@
   "author": "CA Technologies",
   "version": "1.0.0",
   "description": "Yeoman generators for common CA components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CAAPIM/generator-ca.git"
+  },
   "files": [
     "generators"
   ],
@@ -12,6 +16,22 @@
     "yeoman-generator",
     "ca"
   ],
+  "scripts": {
+    "lint": "eslint ./src/ --ext .js",
+    "test": "gulp",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "npm run lint",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": "conventional-commit-types"
+    },
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "yeoman-generator": "^0.24.1",
     "chalk": "^1.1.3",
@@ -29,38 +49,10 @@
     "gulp-istanbul": "^1.1.1",
     "gulp-mocha": "^3.0.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-nsp": "^2.4.2",
     "semantic-release": "^6.3.2",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
     "husky": "^0.11.9",
     "validate-commit-msg": "^2.8.2"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CAAPIM/generator-ca.git"
-  },
-  "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git-cz",
-    "commitmsg": "validate-commit-msg",
-    "lint": "eslint ./src/ --ext .js",
-    "precommit": "npm run lint"
-  },
-  "config": {
-    "validate-commit-msg": {
-      "types": "conventional-commit-types"
-    },
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   }
 }

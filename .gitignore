@@ -1,11 +1,23 @@
+# global files
+.DS_Store
+Desktop.ini
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
 # Logs
 *.log
 
 # Coverage tools
 coverage
+flow-coverage
 
-# Dependency directory
+# NPM
 node_modules
+npm-debug.log
 
-# Dist directory
-dist
+# Editor artifacts
+.idea
+
+# Builds
+lib

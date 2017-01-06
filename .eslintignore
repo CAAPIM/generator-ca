@@ -1,0 +1,5 @@
+node_modules/*
+.github/*
+flow-typed/*
+flow-coverage/*
+coverage/*

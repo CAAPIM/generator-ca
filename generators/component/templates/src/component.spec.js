@@ -4,27 +4,41 @@
  * of the MIT license. See the LICENSE file for details.
  */
 
+// @flow
+
 import React from 'react';
 import { shallow } from 'enzyme';
-import <%= componentName %> from './<%= componentName %>';
+import <%= componentName %>WithTheme, {
+  <%= componentName %>,
+} from './<%= componentName %>';
 
-it('will no trigger the onClick prop event', () => {
-  const index = 0;
-  const component = shallow(
-    <<%= componentName %> />
-  );
+describe('<%= componentName %>', () => {
+  it('will not trigger the onClick prop event', () => {
+    const index = 0;
+    const component = shallow(
+      <<%= componentName %> />
+    );
 
-  component.simulate('click');
-  expect(index).toEqual(0);
-});
+    component.simulate('click');
+    expect(index).toEqual(0);
+  });
 
-it('wil trigger the onClick prop event', () => {
-  let index = 0;
+  it('will trigger the onClick prop event', () => {
+    let index = 0;
 
-  const component = shallow(
-    <<%= componentName %> onClick={() => index++} />
-  );
+    const component = shallow(
+      <<%= componentName %> onClick={() => index++} />
+    );
 
-  component.simulate('click');
-  expect(index).toEqual(1);
+    component.simulate('click');
+    expect(index).toEqual(1);
+  });
+
+  it('will render JSS theme', () => {
+    const component = shallow(
+      <<%= componentName %>WithTheme />
+    );
+
+    expect(!!component.html().match(/class="some-class root-[0-9]+"/)).toEqual(true);
+  });
 });

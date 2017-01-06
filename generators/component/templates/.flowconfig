@@ -2,8 +2,8 @@
 .*/node_modules/flow-coverage-report/.*
 .*/node_modules/config-chain/.*
 .*/node_modules/npmconf/.*
-.*/src/*.spec.js
-.*/src/*.stories.js
+.*/node_modules/findup/.*
+.*/node_modules/jss/.*
 
 [include]
 

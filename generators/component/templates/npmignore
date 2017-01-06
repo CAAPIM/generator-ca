@@ -1,0 +1,7 @@
+.github
+.storybook
+node_modules
+flow-typed
+coverage
+flow-coverage
+src

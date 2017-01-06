@@ -1,9 +1,0 @@
-# Logs
-*.log
-
-# Coverage tools
-coverage
-flow-coverage
-
-# Dependency directory
-node_modules

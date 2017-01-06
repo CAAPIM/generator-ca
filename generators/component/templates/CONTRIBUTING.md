@@ -47,9 +47,9 @@ Before filing a new issue, check Known Issues to see if your problem already exi
 By contributing to <%= componentName %> Library, you agree that your contributions will be licensed under its [license][license-link].
 
 
- [guidelines]: /GUIDELINES.md
+ [guidelines]: GUIDELINES.md
  [community]: https://communities.ca.com/community/ca-api-management-community/content?filterID=contentstatus%5Bpublished%5D~category%5Bca-mobile-api-gateway%5D
- [license-link]: /LICENSE
+ [license-link]: LICENSE
  [cla]: https://www.clahub.com/agreements/CAAPIM/<%= packageName %>
  [casupport]: https://support.ca.com/irj/portal/implsvcnewcase
 

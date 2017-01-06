@@ -1,6 +1,4 @@
-lib/*
 node_modules/*
-.storybook/*
 .github/*
 flow-typed/*
 flow-coverage/*

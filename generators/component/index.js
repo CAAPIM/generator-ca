@@ -37,17 +37,21 @@ module.exports = yeoman.Base.extend({
   },
 
   paths: function () {
-    this.destinationRoot(`./${this.props.componentName}`);
+    this.destinationRoot(`./${this.props.packageName}`);
   },
 
   writing: function () {
-    this.fs.copy(this.templatePath('.gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('npmignore'), this.destinationPath('.npmignore'));
     this.fs.copy(this.templatePath('.flowconfig'), this.destinationPath('.flowconfig'));
     this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
     this.fs.copy(this.templatePath('.editorconfig'), this.destinationPath('.editorconfig'));
     this.fs.copy(this.templatePath('.eslintrc'), this.destinationPath('.eslintrc'));
     this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath('.eslintignore'));
     this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
+    this.fs.copy(this.templatePath('LICENSE'), this.destinationPath('LICENSE'));
+    this.fs.copy(this.templatePath('LICENSE.md'), this.destinationPath('LICENSE.md'));
+    this.fs.copy(this.templatePath('CHANGELOG.md'), this.destinationPath('CHANGELOG.md'));
     this.fs.copy(this.templatePath('tools/*'), this.destinationPath('tools'));
 
     this.fs.copyTpl(
@@ -65,6 +69,10 @@ module.exports = yeoman.Base.extend({
       });
 
     this.fs.copyTpl(
+      this.templatePath('flow-typed/**/*'),
+      this.destinationPath('flow-typed'));
+
+    this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
         componentName: this.props.componentName,
@@ -74,6 +82,20 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'), {
+        componentName: this.props.componentName,
+        packageName: this.props.packageName
+      });
+
+    this.fs.copyTpl(
+      this.templatePath('CONTRIBUTING.md'),
+      this.destinationPath('CONTRIBUTING.md'), {
+        componentName: this.props.componentName,
+        packageName: this.props.packageName
+      });
+
+    this.fs.copyTpl(
+      this.templatePath('GUIDELINES.md'),
+      this.destinationPath('GUIDELINES.md'), {
         componentName: this.props.componentName,
         packageName: this.props.packageName
       });
@@ -93,6 +115,12 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('src/component.stories.js'),
       this.destinationPath(`src/${this.props.componentName}.stories.js`), {
+        componentName: this.props.componentName
+      });
+
+    this.fs.copyTpl(
+      this.templatePath('src/component.theme.js'),
+      this.destinationPath(`src/${this.props.componentName}.theme.js`), {
         componentName: this.props.componentName
       });
   },

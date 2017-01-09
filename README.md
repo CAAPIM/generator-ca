@@ -6,12 +6,12 @@
 
 ## Overview
 
-Yeoman generator to saffold common JavaScript modules and components. This library is meant to be used to generate all CA projects and components.
+[Yeoman](http://yeoman.io/) generator to saffold common JavaScript modules and components. This library is meant to be used to generate all CA projects and components.
 
 ## Features
 
-* Automagically lint your scripts with ESlint
-* Automagically type check your scripts with Flow
+* Automagically lint your scripts with [ESlint](http://eslint.org/)
+* Automagically type check your scripts with [Flow](https://flowtype.org/)
 * Unit Testing with [Jest](https://github.com/facebook/jest) and [Enzyme](https://github.com/airbnb/enzyme)
 * Built-in preview server with [React Storybook](https://github.com/kadirahq/react-storybook) for react components
 

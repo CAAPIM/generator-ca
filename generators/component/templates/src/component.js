@@ -8,7 +8,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
-import reactThemerJss from 'react-themer-jss';
+import reactThemerJss from '@ca/react-themer-jss';
 
 import <%= componentName %>Theme from './<%= componentName %>.theme';
 

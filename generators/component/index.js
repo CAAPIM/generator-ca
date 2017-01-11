@@ -47,6 +47,7 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
     this.fs.copy(this.templatePath('.editorconfig'), this.destinationPath('.editorconfig'));
     this.fs.copy(this.templatePath('.eslintrc'), this.destinationPath('.eslintrc'));
+    this.fs.copy(this.templatePath('tests/.eslintrc'), this.destinationPath('tests/.eslintrc'));
     this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath('.eslintignore'));
     this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
     this.fs.copy(this.templatePath('LICENSE'), this.destinationPath('LICENSE'));
@@ -107,8 +108,8 @@ module.exports = yeoman.Base.extend({
       });
 
     this.fs.copyTpl(
-      this.templatePath('src/component.spec.js'),
-      this.destinationPath(`src/${this.props.componentName}.spec.js`), {
+      this.templatePath('tests/component.spec.js'),
+      this.destinationPath(`tests/${this.props.componentName}.spec.js`), {
         componentName: this.props.componentName
       });
 

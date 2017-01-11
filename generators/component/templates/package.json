@@ -23,8 +23,8 @@
     "release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "react-themer-jss": "git+ssh://git@github.com:CAAPIM/react-themer-jss.git"
+    "@ca/react-themer-jss": "^1.0.0",
+    "classnames": "^2.2.5"
   },
   "peerDependencies": {
     "react": ">=0.14"
@@ -36,22 +36,22 @@
     "@kadira/storyshots": "^2.0.0",
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
-    "babel-preset-ca": "git+ssh://git@github.com:CAAPIM/babel-preset-ca.git",
+    "babel-preset-ca": "^1.0.0",
     "codecov": "^1.0.1",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
     "enzyme": "^2.5.1",
     "eslint": "^3.12.1",
-    "eslint-config-ca": "git+ssh://git@github.com:CAAPIM/eslint-config-ca.git",
+    "eslint-config-ca": "^1.0.0",
     "eslint-loader": "^1.6.1",
     "flow-bin": "^0.37.0",
     "flow-coverage-report": "^0.2.0",
+    "husky": "^0.11.9",
     "jest": "^17.0.3",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
     "rimraf": "^2.5.4",
-    "pre-commit": "^1.2.1",
     "semantic-release": "^6.3.2",
     "validate-commit-msg": "^2.8.2"
   },

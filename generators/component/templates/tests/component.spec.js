@@ -10,7 +10,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import <%= componentName %>WithTheme, {
   <%= componentName %>,
-} from './<%= componentName %>';
+} from '../src/<%= componentName %>';
 
 describe('<%= componentName %>', () => {
   it('will not trigger the onClick prop event', () => {

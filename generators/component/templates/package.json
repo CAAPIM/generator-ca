@@ -23,7 +23,7 @@
     "release": "semantic-release pre && npm publish && semantic-release post"
   },
   "dependencies": {
-    "@ca/react-themer-jss": "^1.0.0",
+    "@caapim/react-themer-jss": "^1.0.0",
     "classnames": "^2.2.5"
   },
   "peerDependencies": {

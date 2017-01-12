@@ -1,8 +1,9 @@
 # generator-ca
+[![Build Status](https://travis-ci.org/CAAPIM/generator-ca.svg?branch=master)](https://travis-ci.org/CAAPIM/generator-ca)
+[![codecov](https://codecov.io/gh/CAAPIM/generator-ca/branch/master/graph/badge.svg)](https://codecov.io/gh/CAAPIM/generator-ca)
+[![dependencies](https://david-dm.org/CAAPIM/generator-ca.svg)](https://david-dm.org/CAAPIM/generator-ca)
+[![devDependency Status](https://david-dm.org/CAAPIM/generator-ca/dev-status.svg)](https://david-dm.org/CAAPIM/generator-ca#info=devDependencies)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Build Status](https://travis-ci.org/caapim/generator-ca.svg?branch=master)](https://travis-ci.org/caapim/generator-ca)
-[![dependencies](https://david-dm.org/caapim/generator-ca.svg)](https://david-dm.org/caapim/generator-ca)
-[![devDependency Status](https://david-dm.org/caapim/generator-ca/dev-status.svg)](https://david-dm.org/caapim/generator-ca#info=devDependencies)
 
 ## Overview
 

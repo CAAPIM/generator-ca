@@ -13,13 +13,14 @@ cache:
   - node_modules
 
 before_script:
-  - npm install
+- npm prune
 
 script:
 - npm run lint
-- npm test
+- npm run test
 
 after_success:
+- npm run codecov
 - npm run release
 
 branches:

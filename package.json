@@ -2,7 +2,7 @@
   "name": "generator-ca",
   "license": "MIT",
   "author": "CA Technologies",
-  "version": "1.0.1",
+  "version": "0.0.0-development",
   "description": "Yeoman generators for common CA components",
   "repository": {
     "type": "git",
@@ -17,12 +17,13 @@
     "ca"
   ],
   "scripts": {
-    "lint": "eslint ./src/ --ext .js",
-    "test": "gulp",
+    "lint": "eslint .",
+    "test": "gulp test",
+    "codecov": "codecov",
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
-    "precommit": "npm run lint",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "precommit": "npm run lint && npm run test",
+    "release": "semantic-release pre && npm publish && semantic-release post"
   },
   "config": {
     "validate-commit-msg": {
@@ -38,21 +39,21 @@
     "yosay": "^1.2.1"
   },
   "devDependencies": {
-    "yeoman-test": "^1.6.0",
-    "yeoman-assert": "^2.2.1",
-    "eslint": "^3.12.1",
-    "eslint-config-ca": "^1.0.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^3.0.1",
-    "gulp-exclude-gitignore": "^1.1.1",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-istanbul": "^1.1.1",
-    "gulp-mocha": "^3.0.1",
-    "gulp-plumber": "^1.1.0",
-    "semantic-release": "^6.3.2",
+    "codecov": "^1.0.1",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
+    "eslint": "^3.13.1",
+    "eslint-config-ca": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-exclude-gitignore": "^1.1.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-plumber": "^1.1.0",
     "husky": "^0.11.9",
-    "validate-commit-msg": "^2.8.2"
+    "semantic-release": "^6.3.2",
+    "validate-commit-msg": "^2.8.2",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.6.0"
   }
 }

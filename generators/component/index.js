@@ -4,28 +4,26 @@
  * of the MIT license. See the LICENSE file for details.
  */
 
-'use strict';
-
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+const yeoman = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
-  prompting: function () {
-    var done = this.async();
+  prompting() {
+    const done = this.async();
 
     this.log(yosay(
-      'Welcome to the ' + chalk.red('CA Component') + ' generator!'
+      `Welcome to the ${chalk.red('CA Component')} generator!`
     ));
 
-    var prompts = [{
+    const prompts = [{
       type: 'input',
       name: 'componentName',
       message: 'What would you like to name your component?',
-      default: 'MyComponent'
+      default: 'MyComponent',
     }];
 
-    return this.prompt(prompts).then(function (props) {
+    return this.prompt(prompts).then((props) => {
       this.props = props;
 
       this.props.packageName = props.componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -33,14 +31,14 @@ module.exports = yeoman.Base.extend({
       this.props.componentName = props.componentName;
 
       done();
-    }.bind(this));
+    });
   },
 
-  paths: function () {
+  paths() {
     this.destinationRoot(`./${this.props.packageName}`);
   },
 
-  writing: function () {
+  writing() {
     this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
     this.fs.copy(this.templatePath('npmignore'), this.destinationPath('.npmignore'));
     this.fs.copy(this.templatePath('.flowconfig'), this.destinationPath('.flowconfig'));
@@ -49,6 +47,7 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(this.templatePath('.eslintrc'), this.destinationPath('.eslintrc'));
     this.fs.copy(this.templatePath('tests/.eslintrc'), this.destinationPath('tests/.eslintrc'));
     this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath('.eslintignore'));
+    this.fs.copy(this.templatePath('.codecov.yml'), this.destinationPath('.codecov.yml'));
     this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
     this.fs.copy(this.templatePath('LICENSE'), this.destinationPath('LICENSE'));
     this.fs.copy(this.templatePath('LICENSE.md'), this.destinationPath('LICENSE.md'));
@@ -58,7 +57,7 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('.storybook/**/*'),
       this.destinationPath('.storybook'), {
-        componentName: this.props.componentName
+        componentName: this.props.componentName,
       });
 
     this.fs.copyTpl(
@@ -66,7 +65,7 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('.github'), {
         componentName: this.props.componentName,
         packageName: this.props.packageName,
-        currentYear: new Date().getFullYear()
+        currentYear: new Date().getFullYear(),
       });
 
     this.fs.copyTpl(
@@ -77,56 +76,56 @@ module.exports = yeoman.Base.extend({
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
         componentName: this.props.componentName,
-        packageName: this.props.packageName
+        packageName: this.props.packageName,
       });
 
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'), {
         componentName: this.props.componentName,
-        packageName: this.props.packageName
+        packageName: this.props.packageName,
       });
 
     this.fs.copyTpl(
       this.templatePath('CONTRIBUTING.md'),
       this.destinationPath('CONTRIBUTING.md'), {
         componentName: this.props.componentName,
-        packageName: this.props.packageName
+        packageName: this.props.packageName,
       });
 
     this.fs.copyTpl(
       this.templatePath('GUIDELINES.md'),
       this.destinationPath('GUIDELINES.md'), {
         componentName: this.props.componentName,
-        packageName: this.props.packageName
+        packageName: this.props.packageName,
       });
 
     this.fs.copyTpl(
       this.templatePath('src/component.js'),
       this.destinationPath(`src/${this.props.componentName}.js`), {
-        componentName: this.props.componentName
+        componentName: this.props.componentName,
       });
 
     this.fs.copyTpl(
       this.templatePath('tests/component.spec.js'),
       this.destinationPath(`tests/${this.props.componentName}.spec.js`), {
-        componentName: this.props.componentName
+        componentName: this.props.componentName,
       });
 
     this.fs.copyTpl(
       this.templatePath('src/component.stories.js'),
       this.destinationPath(`src/${this.props.componentName}.stories.js`), {
-        componentName: this.props.componentName
+        componentName: this.props.componentName,
       });
 
     this.fs.copyTpl(
       this.templatePath('src/component.theme.js'),
       this.destinationPath(`src/${this.props.componentName}.theme.js`), {
-        componentName: this.props.componentName
+        componentName: this.props.componentName,
       });
   },
 
-  install: function () {
-    this.installDependencies({bower: false});
-  }
+  install() {
+    this.installDependencies({ bower: false });
+  },
 });

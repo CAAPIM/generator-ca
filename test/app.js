@@ -4,25 +4,46 @@
  * of the MIT license. See the LICENSE file for details.
  */
 
-'use strict';
+const path = require('path');
+const assert = require('yeoman-assert');
+const helpers = require('yeoman-test');
 
-var path = require('path');
-var assert = require('yeoman-assert');
-var helpers = require('yeoman-test');
-
-describe('generator-ca:component', function () {
-  before(function () {
-    return helpers.run(path.join(__dirname, '../generators/component'))
+describe('generator-ca:component', () => {
+  before(() =>
+    helpers.run(path.join(__dirname, '../generators/component'))
       .withPrompts({
-        componentName: 'test',
-        portNumber: 3001
+        componentName: 'TestComponent',
       })
-      .toPromise();
-  });
+      .toPromise()
+  );
 
-  it('creates files', function () {
+  it('creates files', () => {
     assert.file([
-      '.gitignore'
+      '.github/PULL_REQUEST_TEMPLATE.md',
+      '.storybook/config.js',
+      '.storybook/head.html',
+      '.storybook/webpack.config.js',
+      'src/TestComponent.js',
+      'src/TestComponent.stories.js',
+      'src/TestComponent.theme.js',
+      'tests/.eslintrc',
+      'tests/TestComponent.spec.js',
+      '.babelrc',
+      '.codecov.yml',
+      '.editorconfig',
+      '.eslintignore',
+      '.eslintrc',
+      '.flowconfig',
+      '.gitignore',
+      '.npmignore',
+      '.travis.yml',
+      'CHANGELOG.md',
+      'CONTRIBUTING.md',
+      'GUIDELINES.md',
+      'LICENSE',
+      'LICENSE.md',
+      'package.json',
+      'README.md',
     ]);
   });
 });

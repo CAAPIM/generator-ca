@@ -12,6 +12,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "codecov": "codecov",
     "storybook": "start-storybook -p 9001",
     "storybook:test": "storyshots",
     "storybook:deploy": "storybook-to-ghpages",
@@ -60,14 +61,6 @@
       "src/**/*.js",
       "!src/**/*.stories.js"
     ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    },
     "unmockedModulePathPatterns": [
       "node_modules/react/",
       "node_modules/enzyme/"

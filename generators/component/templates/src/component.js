@@ -8,7 +8,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import cx from 'classnames';
-import reactThemerJss from '@caapim/react-themer-jss';
+import reactThemerJss from 'ca-ui-react-themer-jss';
 
 import <%= componentName %>Theme from './<%= componentName %>.theme';
 

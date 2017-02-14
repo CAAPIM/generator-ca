@@ -21,7 +21,7 @@
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
     "precommit": "npm run lint && npm run flow && npm run test && npm run test:coverage",
-    "release": "semantic-release pre && npm publish && semantic-release post"
+    "release": "semantic-release pre && npm publish && storybook-to-ghpages && semantic-release post"
   },
   "dependencies": {
     "ca-ui-react-themer-jss": "^1.0.0",

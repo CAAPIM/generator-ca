@@ -9,12 +9,11 @@ const assert = require('yeoman-assert');
 const helpers = require('yeoman-test');
 
 describe('generator-ca:component', () => {
-  before(() =>
-    helpers.run(path.join(__dirname, '../generators/component'))
-      .withPrompts({
-        componentName: 'TestComponent',
-      })
-      .toPromise()
+  beforeAll(() =>
+    helpers.run(path.join(__dirname, '../generators/component')).withPrompts({
+      componentName: 'TestComponent',
+      description: 'Some description',
+    }),
   );
 
   it('creates files', () => {
@@ -22,12 +21,13 @@ describe('generator-ca:component', () => {
       '.github/PULL_REQUEST_TEMPLATE.md',
       '.storybook/config.js',
       '.storybook/head.html',
-      '.storybook/webpack.config.js',
-      'src/TestComponent.js',
-      'src/TestComponent.stories.js',
-      'src/TestComponent.theme.js',
-      'tests/.eslintrc',
-      'tests/TestComponent.spec.js',
+      'src/TestComponent/index.js',
+      'src/TestComponent/index.stories.js',
+      'src/TestComponent/index.spec.js',
+      'src/TestComponent/index.theme.js',
+      'src/index.js',
+      'tests/index.spec.js',
+      'tests/storyshots.spec.js',
       '.babelrc',
       '.codecov.yml',
       '.editorconfig',
@@ -35,9 +35,9 @@ describe('generator-ca:component', () => {
       '.eslintrc',
       '.flowconfig',
       '.gitignore',
+      '.gitattributes',
       '.npmignore',
       '.travis.yml',
-      'CHANGELOG.md',
       'CONTRIBUTING.md',
       'GUIDELINES.md',
       'LICENSE',

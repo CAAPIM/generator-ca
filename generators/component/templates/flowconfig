@@ -1,12 +1,12 @@
 [ignore]
+<PROJECT_ROOT>/coverage/.*
+<PROJECT_ROOT>/flow-coverage/.*
+<PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/build/.*
 .*/node_modules/flow-coverage-report/.*
 .*/node_modules/config-chain/.*
 .*/node_modules/npmconf/.*
 .*/node_modules/findup/.*
-.*/node_modules/jss/.*
-
-[include]
-
-[libs]
 
 [options]
+unsafe.enable_getters_and_setters=true

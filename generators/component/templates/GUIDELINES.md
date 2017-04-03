@@ -1,6 +1,6 @@
-# <%= componentName %> Library Style Guide
+# <%= repoName %> Style Guide
 
-This document describes JavaScript coding style/standard guide for <%= componentName %> library.
+This document describes JavaScript coding style/standard guide for <%= repoName %>.
 
 ## Review ES6(ECMAScript 6) Official Coding Guidelines
 

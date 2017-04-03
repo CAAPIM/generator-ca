@@ -1,0 +1,7 @@
+{
+  "parser": "babel-eslint",
+  "extends": "ca",
+  "env": {
+    "jest": true
+  }
+}

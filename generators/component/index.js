@@ -4,128 +4,164 @@
  * of the MIT license. See the LICENSE file for details.
  */
 
-const yeoman = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const camelCase = require('lodash/camelCase');
+const capitalize = require('lodash/capitalize');
+const forEach = require('lodash/forEach');
+const parseGitHubUrl = require('parse-github-url');
 
-module.exports = yeoman.Base.extend({
+module.exports = class extends Generator {
   prompting() {
+    this.props = {};
     const done = this.async();
 
-    this.log(yosay(
-      `Welcome to the ${chalk.red('CA Component')} generator!`
-    ));
+    this.log(yosay(`Welcome to the ${chalk.red('CA Component')} generator!`));
 
-    const prompts = [{
-      type: 'input',
-      name: 'componentName',
-      message: 'What would you like to name your component?',
-      default: 'MyComponent',
-    }];
-
-    return this.prompt(prompts).then((props) => {
-      this.props = props;
-
-      this.props.packageName = props.componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-      this.props.portNumber = props.portNumber;
+    return this.prompt([
+      {
+        type: 'input',
+        name: 'componentName',
+        message: 'What would you like to name your component?',
+        default: 'ComponentName',
+        validate: (value) => {
+          const camelCaseValue = camelCase(capitalize(value));
+          if (value === camelCaseValue) {
+            return 'The component name must be capitalized CamelCase.';
+          }
+          return true;
+        },
+      },
+    ]).then((props) => {
       this.props.componentName = props.componentName;
+      this.props.repoName = `CA-UI-${props.componentName}`;
 
-      done();
+      return this.prompt([
+        {
+          type: 'input',
+          name: 'repoUrl',
+          message: 'Where will the component be published?',
+          default: `https://github.com/CAAPIM/${this.props.repoName}`,
+        },
+        {
+          type: 'input',
+          name: 'packageName',
+          message: 'What would you like to name the NPM package?',
+          default: this.props.repoName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase(),
+        },
+        {
+          type: 'input',
+          name: 'description',
+          message: 'What does your component do?',
+          required: true,
+          validate: (value) => {
+            if (!value || value === '') {
+              return 'Please write a few words to describe what the component does.';
+            }
+            return true;
+          },
+        },
+        {
+          type: 'list',
+          name: 'componentType',
+          message: 'What type of component would you like to create?',
+          choices: ['class', 'function'],
+          default: 'class',
+        },
+      ]).then((props2) => {
+        this.props.packageName = props2.packageName;
+        this.props.repoUrl = props2.repoUrl;
+        this.props.description = props2.description;
+        this.props.componentType = props2.componentType;
+
+        // parse GitHub URL
+        this.props.repo = parseGitHubUrl(this.props.repoUrl);
+
+        return this.prompt([
+          {
+            type: 'input',
+            name: 'confirm',
+            message: 'Does this look good?',
+            default: 'yes',
+          },
+        ]).then((props3) => {
+          if (props3.confirm === 'yes') {
+            done();
+          } else {
+            process.exit();
+          }
+        });
+      });
     });
-  },
+  }
 
   paths() {
-    this.destinationRoot(`./${this.props.packageName}`);
-  },
+    this.destinationRoot(`./${this.props.repo.name}`);
+  }
 
   writing() {
-    this.fs.copy(this.templatePath('gitignore'), this.destinationPath('.gitignore'));
-    this.fs.copy(this.templatePath('npmignore'), this.destinationPath('.npmignore'));
-    this.fs.copy(this.templatePath('.flowconfig'), this.destinationPath('.flowconfig'));
-    this.fs.copy(this.templatePath('.babelrc'), this.destinationPath('.babelrc'));
-    this.fs.copy(this.templatePath('.editorconfig'), this.destinationPath('.editorconfig'));
-    this.fs.copy(this.templatePath('.eslintrc'), this.destinationPath('.eslintrc'));
-    this.fs.copy(this.templatePath('tests/.eslintrc'), this.destinationPath('tests/.eslintrc'));
-    this.fs.copy(this.templatePath('.eslintignore'), this.destinationPath('.eslintignore'));
-    this.fs.copy(this.templatePath('.codecov.yml'), this.destinationPath('.codecov.yml'));
-    this.fs.copy(this.templatePath('.travis.yml'), this.destinationPath('.travis.yml'));
-    this.fs.copy(this.templatePath('LICENSE'), this.destinationPath('LICENSE'));
-    this.fs.copy(this.templatePath('LICENSE.md'), this.destinationPath('LICENSE.md'));
-    this.fs.copy(this.templatePath('CHANGELOG.md'), this.destinationPath('CHANGELOG.md'));
-    this.fs.copy(this.templatePath('tools/*'), this.destinationPath('tools'));
+    const templates = {
+      // dotfiles
+      gitignore: '.gitignore',
+      npmignore: '.npmignore',
+      flowconfig: '.flowconfig',
+      babelrc: '.babelrc',
+      editorconfig: '.editorconfig',
+      eslintrc: '.eslintrc',
+      eslintignore: '.eslintignore',
+      gitattributes: '.gitattributes',
+      'codecov.yml': '.codecov.yml',
+      'travis.yml': '.travis.yml',
 
-    this.fs.copyTpl(
-      this.templatePath('.storybook/**/*'),
-      this.destinationPath('.storybook'), {
-        componentName: this.props.componentName,
-      });
+      // Licence & Open Source files
+      'README.md': 'README.md',
+      LICENSE: 'LICENSE',
+      'LICENSE.md': 'LICENSE.md',
+      'CONTRIBUTING.md': 'CONTRIBUTING.md',
+      'GUIDELINES.md': 'GUIDELINES.md',
+      'github/**/*': '.github',
 
-    this.fs.copyTpl(
-      this.templatePath('.github/**/*'),
-      this.destinationPath('.github'), {
-        componentName: this.props.componentName,
-        packageName: this.props.packageName,
-        currentYear: new Date().getFullYear(),
-      });
+      // NPM package file
+      'package.json': 'package.json',
 
-    this.fs.copyTpl(
-      this.templatePath('flow-typed/**/*'),
-      this.destinationPath('flow-typed'));
+      // flow definitions files
+      'flow-typed/**/*': 'flow-typed',
 
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'), {
-        componentName: this.props.componentName,
-        packageName: this.props.packageName,
-      });
+      // storybook settings
+      'storybook/**/*': '.storybook',
 
-    this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath('README.md'), {
-        componentName: this.props.componentName,
-        packageName: this.props.packageName,
-      });
+      // source files
+      [`src/component/${this.props.componentType}.js`]:
+        `src/${this.props.componentName}/index.js`,
+      'src/component/index.spec.js': `src/${this.props.componentName}/index.spec.js`,
+      'src/component/index.stories.js': `src/${this.props.componentName}/index.stories.js`,
+      'src/component/index.theme.js': `src/${this.props.componentName}/index.theme.js`,
+      'src/index.js': 'src/index.js',
 
-    this.fs.copyTpl(
-      this.templatePath('CONTRIBUTING.md'),
-      this.destinationPath('CONTRIBUTING.md'), {
-        componentName: this.props.componentName,
-        packageName: this.props.packageName,
-      });
+      // global test files
+      'tests/**/*': 'tests',
+    };
 
-    this.fs.copyTpl(
-      this.templatePath('GUIDELINES.md'),
-      this.destinationPath('GUIDELINES.md'), {
-        componentName: this.props.componentName,
-        packageName: this.props.packageName,
-      });
-
-    this.fs.copyTpl(
-      this.templatePath('src/component.js'),
-      this.destinationPath(`src/${this.props.componentName}.js`), {
-        componentName: this.props.componentName,
-      });
-
-    this.fs.copyTpl(
-      this.templatePath('tests/component.spec.js'),
-      this.destinationPath(`tests/${this.props.componentName}.spec.js`), {
-        componentName: this.props.componentName,
-      });
-
-    this.fs.copyTpl(
-      this.templatePath('src/component.stories.js'),
-      this.destinationPath(`src/${this.props.componentName}.stories.js`), {
-        componentName: this.props.componentName,
-      });
-
-    this.fs.copyTpl(
-      this.templatePath('src/component.theme.js'),
-      this.destinationPath(`src/${this.props.componentName}.theme.js`), {
-        componentName: this.props.componentName,
-      });
-  },
+    forEach(templates, (dest, src) => {
+      this.fs.copyTpl(
+        this.templatePath(src),
+        this.destinationPath(dest),
+        {
+          componentName: this.props.componentName,
+          componentType: this.props.componentType,
+          packageName: this.props.packageName,
+          repoOwner: this.props.repo.owner,
+          repoPath: this.props.repo.repo,
+          repoName: this.props.repo.name,
+          repoUrl: this.props.repoUrl,
+          description: this.props.description,
+          currentYear: new Date().getFullYear(),
+        });
+    });
+  }
 
   install() {
     this.installDependencies({ bower: false });
-  },
-});
+  }
+};

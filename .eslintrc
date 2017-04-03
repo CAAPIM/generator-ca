@@ -1,7 +1,7 @@
 {
+  "extends": "ca",
   "env": {
-    "node": true,
-    "es6": true,
-  },
-  "extends": "ca"
+    "jest": true,
+    "node": true
+  }
 }

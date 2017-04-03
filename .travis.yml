@@ -6,23 +6,23 @@ notifications:
   email: false
 
 node_js:
-- stable
+  - stable
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 before_script:
-- npm prune
+  - npm prune
 
 script:
-- npm run lint
-- npm run test
+  - npm run lint
+  - npm run test
 
 after_success:
-- npm run codecov
-- npm run release
+  - npm run codecov
+  - npm run release
 
 branches:
   only:
-  - master
+    - master

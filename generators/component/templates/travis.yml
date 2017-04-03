@@ -1,0 +1,37 @@
+#
+# Copyright (c) <%= currentYear %> CA. All rights reserved.
+# This software may be modified and distributed under the terms
+# of the MIT license. See the LICENSE file for details.
+#
+
+sudo: false
+
+language: node_js
+
+notifications:
+  email: false
+
+node_js:
+  - stable
+
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - npm prune
+
+script:
+  - npm run lint
+  - npm run flow
+  - npm run storybook:test
+  - npm run test:coverage
+  - npm run build
+
+after_success:
+  - npm run codecov
+  - npm run release
+
+branches:
+  only:
+    - master

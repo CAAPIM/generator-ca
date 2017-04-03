@@ -1,62 +1,84 @@
 {
   "name": "<%= packageName %>",
-  "version": "1.0.0",
-  "main": "lib/<%= componentName %>.js",
+  "version": "0.0.0-development",
+  "main": "lib/index.js",
   "license": "MIT",
   "author": "CA Technologies",
-  "description": "CA Technologies React Component",
+  "description": "<%= description %>",
+  "keywords": [
+    "JS",
+    "React",
+    "CA Technologies"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "<%= repoUrl %>.git"
+  },
   "scripts": {
     "lint": "eslint .",
     "flow": "flow check",
-    "flow:coverage": "flow-coverage-report -i './src/**/*.js' -t html -t text --threshold 90",
+    "flow:coverage": "flow-coverage-report -i './src/**/*.js' -x './src/**/*.spec.js' -x './src/**/*.stories.js' -t html -t text",
+    "flow:copy": "flow-copy-source --ignore *.spec.js,*.stories.js src lib",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "codecov": "codecov",
     "storybook": "start-storybook -p 9001",
-    "storybook:test": "storyshots",
+    "storybook:build": "build-storybook -o build",
     "storybook:deploy": "storybook-to-ghpages",
+    "compile": "babel --out-dir ./lib --ignore *.spec.js,*.stories.js ./src",
     "prebuild": "rimraf ./lib",
-    "build": "babel --out-dir ./lib --ignore *.spec.js,*.stories.js ./src",
+    "build": "npm run compile && npm run flow:copy",
+    "start": "npm run storybook",
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
-    "precommit": "npm run lint && npm run flow && npm run test && npm run test:coverage",
+    "precommit": "npm run lint && npm run flow && npm run test:coverage",
     "release": "semantic-release pre && npm publish && storybook-to-ghpages && semantic-release post"
   },
   "dependencies": {
-    "ca-ui-react-themer-jss": "^1.0.0",
-    "classnames": "^2.2.5"
+    "ca-ui-react-themer-jss": "^1.2.2",
+    "classnames": "^2.2.5"<% if (componentType === 'function') { %>,
+    "recompose": "^0.22.0"<% } %>
   },
   "peerDependencies": {
     "react": ">=0.14"
   },
   "devDependencies": {
-    "@kadira/react-storybook-addon-info": "^3.3.0",
-    "@kadira/storybook": "^2.34.0",
+    "@kadira/react-storybook-addon-info": "^3.4.0",
+    "@kadira/storybook": "^2.35.3",
     "@kadira/storybook-deployer": "^1.2.0",
-    "@kadira/storyshots": "^2.0.0",
-    "babel-cli": "^6.18.0",
-    "babel-eslint": "^7.1.1",
-    "babel-preset-ca": "^1.0.0",
-    "codecov": "^1.0.1",
-    "commitizen": "^2.8.6",
-    "cz-conventional-changelog": "^1.2.0",
-    "enzyme": "^2.5.1",
-    "eslint": "^3.12.1",
-    "eslint-config-ca": "^1.0.0",
-    "eslint-loader": "^1.6.1",
-    "flow-bin": "^0.37.0",
-    "flow-coverage-report": "^0.2.0",
-    "husky": "^0.11.9",
-    "jest": "^17.0.3",
-    "react": "^15.4.1",
-    "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "rimraf": "^2.5.4",
+    "babel-cli": "^6.24.0",
+    "babel-eslint": "^7.2.1",
+    "babel-preset-ca": "^1.0.3",
+    "codecov": "^2.1.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "enzyme": "^2.8.0",
+    "eslint": "^3.19.0",
+    "eslint-config-ca": "^2.0.0",
+    "eslint-loader": "^1.7.1",
+    "flow-bin": "^0.42.0",
+    "flow-copy-source": "^1.1.0",
+    "flow-coverage-report": "^0.3.0",
+    "husky": "^0.13.3",
+    "jest": "^19.0.2",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "rimraf": "^2.6.1",
     "semantic-release": "^6.3.2",
-    "validate-commit-msg": "^2.8.2"
+    "storyshots": "^3.2.2",
+    "validate-commit-msg": "^2.12.0"
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/**/*.stories.js"
@@ -73,14 +95,5 @@
     "validate-commit-msg": {
       "types": "conventional-commit-types"
     }
-  },
-  "keywords": [
-    "JS",
-    "React",
-    "CA Technologies"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CAAPIM/<%= packageName %>.git"
   }
 }

@@ -1,4 +1,6 @@
 # generator-ca
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/CAAPIM/generator-ca.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/CAAPIM/generator-ca.svg?branch=master)](https://travis-ci.org/CAAPIM/generator-ca)
 [![codecov](https://codecov.io/gh/CAAPIM/generator-ca/branch/master/graph/badge.svg)](https://codecov.io/gh/CAAPIM/generator-ca)
 [![dependencies](https://david-dm.org/CAAPIM/generator-ca.svg)](https://david-dm.org/CAAPIM/generator-ca)

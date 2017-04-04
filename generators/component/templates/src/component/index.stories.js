@@ -10,6 +10,7 @@
 import React from 'react';
 import withTheme from 'ca-ui-react-themer-jss';
 import { storiesOf, action } from '@kadira/storybook';
+
 import <%= componentName %>, {
   <%= componentName %>Raw,
 } from './';

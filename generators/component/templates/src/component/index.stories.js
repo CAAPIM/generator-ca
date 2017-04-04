@@ -10,19 +10,14 @@
 import React from 'react';
 import withTheme from 'ca-ui-react-themer-jss';
 import { storiesOf, action } from '@kadira/storybook';
+
 import <%= componentName %>, {
   <%= componentName %>Raw,
 } from './';
+import testTheme from './fixtures/testTheme';
 
-const <%= componentName %>WithCustomTheme = withTheme({
-  variables: (vars) => ({
-    ...vars,
-    mainColor: 'white',
-    bgColor: 'green',
-    bgColorHover: 'darkgreen',
-    bgColorActive: 'black',
-  }),
-})(<%= componentName %>);
+const <%= componentName %>WithCustomTheme =
+  withTheme(testTheme)(<%= componentName %>);
 
 storiesOf('<%= componentName %>', module)
   .addWithInfo(

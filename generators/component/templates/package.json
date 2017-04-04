@@ -17,8 +17,8 @@
   "scripts": {
     "lint": "eslint .",
     "flow": "flow check",
-    "flow:coverage": "flow-coverage-report -i './src/**/*.js' -x './src/**/*.spec.js' -x './src/**/*.stories.js' -t html -t text",
-    "flow:copy": "flow-copy-source --ignore *.spec.js,*.stories.js src lib",
+    "flow:coverage": "flow-coverage-report -i './src/**/*.js' -x './src/**/*.spec.js' -x './src/**/*.stories.js' -x './src/**/fixtures/**' -t html -t text",
+    "flow:copy": "flow-copy-source -v -i '*/*.spec.js' -i '*/*.stories.js' -i '**/fixtures/**' src lib",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -26,7 +26,7 @@
     "storybook": "start-storybook -p 9001",
     "storybook:build": "build-storybook -o build",
     "storybook:deploy": "storybook-to-ghpages",
-    "compile": "babel --out-dir ./lib --ignore *.spec.js,*.stories.js ./src",
+    "compile": "babel --out-dir ./lib --ignore *.spec.js,*.stories.js,**/fixtures/* ./src",
     "prebuild": "rimraf ./lib",
     "build": "npm run compile && npm run flow:copy",
     "start": "npm run storybook",
@@ -81,7 +81,8 @@
     },
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/**/*.stories.js"
+      "!src/**/*.stories.js",
+      "!src/**/fixtures/**/*"
     ],
     "unmockedModulePathPatterns": [
       "node_modules/react/",

@@ -134,6 +134,7 @@ module.exports = class extends Generator {
       // source files
       [`src/component/${this.props.componentType}.js`]:
         `src/${this.props.componentName}/index.js`,
+      'src/component/fixtures/**/*': `src/${this.props.componentName}/fixtures`,
       'src/component/index.spec.js': `src/${this.props.componentName}/index.spec.js`,
       'src/component/index.stories.js': `src/${this.props.componentName}/index.stories.js`,
       'src/component/index.theme.js': `src/${this.props.componentName}/index.theme.js`,

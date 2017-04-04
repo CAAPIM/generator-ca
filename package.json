@@ -41,6 +41,15 @@
     "yosay": "^2.0.0"
   },
   "jest": {
+    "coverageDirectory": "<rootDir>/coverage/",
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
     "collectCoverageFrom": [
       "generators/**/*.js",
       "!generators/*/templates/**/*",
@@ -49,15 +58,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/generators/component/templates/",
       "<rootDir>/tests/acceptance/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

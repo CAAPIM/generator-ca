@@ -7,7 +7,7 @@
 // @flow
 
 export default {
-  variables: (vars) => ({
+  variables: (vars: Object) => ({
     ...vars,
     mainColor: 'white',
     bgColor: 'green',

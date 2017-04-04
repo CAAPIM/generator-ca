@@ -7,10 +7,10 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const camelCase = require('lodash/camelCase');
-const capitalize = require('lodash/capitalize');
 const forEach = require('lodash/forEach');
 const parseGitHubUrl = require('parse-github-url');
+
+const validate = require('./validate');
 
 module.exports = class extends Generator {
   prompting() {
@@ -25,13 +25,7 @@ module.exports = class extends Generator {
         name: 'componentName',
         message: 'What would you like to name your component?',
         default: 'ComponentName',
-        validate: (value) => {
-          const camelCaseValue = camelCase(capitalize(value));
-          if (value === camelCaseValue) {
-            return 'The component name must be capitalized CamelCase.';
-          }
-          return true;
-        },
+        validate: validate.componentName,
       },
     ]).then((props) => {
       this.props.componentName = props.componentName;
@@ -55,12 +49,7 @@ module.exports = class extends Generator {
           name: 'description',
           message: 'What does your component do?',
           required: true,
-          validate: (value) => {
-            if (!value || value === '') {
-              return 'Please write a few words to describe what the component does.';
-            }
-            return true;
-          },
+          validate: validate.description,
         },
         {
           type: 'list',
@@ -78,20 +67,7 @@ module.exports = class extends Generator {
         // parse GitHub URL
         this.props.repo = parseGitHubUrl(this.props.repoUrl);
 
-        return this.prompt([
-          {
-            type: 'input',
-            name: 'confirm',
-            message: 'Does this look good?',
-            default: 'yes',
-          },
-        ]).then((props3) => {
-          if (props3.confirm === 'yes') {
-            done();
-          } else {
-            process.exit();
-          }
-        });
+        done();
       });
     });
   }
@@ -134,6 +110,7 @@ module.exports = class extends Generator {
       // source files
       [`src/component/${this.props.componentType}.js`]:
         `src/${this.props.componentName}/index.js`,
+      'src/component/fixtures/**/*': `src/${this.props.componentName}/fixtures`,
       'src/component/index.spec.js': `src/${this.props.componentName}/index.spec.js`,
       'src/component/index.stories.js': `src/${this.props.componentName}/index.stories.js`,
       'src/component/index.theme.js': `src/${this.props.componentName}/index.theme.js`,

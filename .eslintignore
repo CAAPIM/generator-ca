@@ -2,3 +2,4 @@
 node_modules/*
 coverage/*
 generators/**/templates/*
+tests/acceptance/build/*

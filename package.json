@@ -38,7 +38,7 @@
     "semantic-release": "^6.3.2",
     "validate-commit-msg": "^2.12.0",
     "yeoman-generator": "^1.0.0",
-    "yosay": "^2.0.0"
+    "yosay": "^2.0.2"
   },
   "jest": {
     "coverageDirectory": "<rootDir>/coverage/",

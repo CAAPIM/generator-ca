@@ -19,7 +19,7 @@
     "component"
   ],
   "devDependencies": {
-    "eslint": "^3.18.0",
+    "eslint": "^6.7.1",
     "eslint-config-ca": "^2.0.0",
     "jest": "^19.0.2",
     "rimraf": "^2.6.1",

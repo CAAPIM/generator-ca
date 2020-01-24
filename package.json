@@ -33,7 +33,7 @@
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.13.3",
     "lodash": "^4.17.4",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.1",
     "parse-github-url": "^1.0.0",
     "semantic-release": "^6.3.2",
     "validate-commit-msg": "^2.12.0",
